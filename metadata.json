@@ -1,0 +1,6 @@
+{
+  "name": "AulaSecundaria - Clases Virtuales",
+  "description": "Plataforma PWA moderna para gestión de clases virtuales por Google Meet, cursos de 1ro a 6to de secundaria y notificaciones push.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
