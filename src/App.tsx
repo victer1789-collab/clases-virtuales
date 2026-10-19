@@ -8,6 +8,7 @@ import { NotificationToast } from './components/NotificationToast';
 import { OfflineIndicator } from './components/OfflineIndicator';
 import { RoleSelector } from './components/RoleSelector';
 import { getCurrentUser, setCurrentUser } from './services/api';
+import { saveGoogleProfile } from './services/googleAuth';
 import { initOneSignal } from './services/onesignal';
 import { Usuario } from './types';
 
@@ -54,6 +55,7 @@ export default function App() {
   const handleLogout = () => {
     setCurrentUser(null);
     setLocalCurrentUser(null);
+    saveGoogleProfile(null);
     setCurrentView('role_select');
   };
 

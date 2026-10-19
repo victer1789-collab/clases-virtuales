@@ -39,6 +39,8 @@ export interface Usuario {
   materia?: string; // Para docente
   cursosAsignados?: CursoSecundaria[]; // Para docente
   email?: string;
+  fotoUrl?: string; // Foto de perfil de Google o avatar
+  googleId?: string; // ID único de Google OAuth
   onesignalPlayerId?: string;
   creadoEn?: string;
 }

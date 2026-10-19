@@ -73,21 +73,48 @@ export const AlumnoPanel: React.FC<Props> = ({ alumno, onChangeProfile }) => {
         <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="space-y-1.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-semibold backdrop-blur-xs">
-              <GraduationCap className="w-4 h-4 text-amber-300" />
-              <span>Estudiante de Secundaria</span>
+          <div className="flex items-center gap-4">
+            {alumno.fotoUrl ? (
+              <img
+                src={alumno.fotoUrl}
+                alt={alumno.nombre}
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover ring-4 ring-white/30 shadow-md shrink-0"
+              />
+            ) : (
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/20 backdrop-blur-xs flex items-center justify-center text-white font-extrabold text-xl shrink-0">
+                {alumno.nombre.charAt(0)}
+              </div>
+            )}
+
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/15 text-white text-[11px] font-semibold backdrop-blur-xs">
+                  <GraduationCap className="w-3.5 h-3.5 text-amber-300" />
+                  <span>Estudiante de Secundaria</span>
+                </span>
+                {alumno.email && (
+                  <span className="hidden xs:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 text-[10px] font-bold">
+                    ✓ Google Verificado
+                  </span>
+                )}
+              </div>
+
+              <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight">
+                ¡Hola, {alumno.nombre}! 👋
+              </h1>
+
+              <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-blue-100">
+                <span className="font-bold text-white bg-blue-500/40 px-2 py-0.5 rounded-md">
+                  {curso}
+                </span>
+                {alumno.email && (
+                  <>
+                    <span>•</span>
+                    <span className="text-blue-200 text-xs truncate max-w-[200px]">{alumno.email}</span>
+                  </>
+                )}
+              </div>
             </div>
-            <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight">
-              ¡Hola, {alumno.nombre}! 👋
-            </h1>
-            <p className="text-xs sm:text-sm text-blue-100 flex items-center gap-2">
-              <span className="font-bold text-white bg-blue-500/40 px-2 py-0.5 rounded-md">
-                {curso}
-              </span>
-              <span>•</span>
-              <span>Tablero de Clases de Google Meet</span>
-            </p>
           </div>
 
           {/* OneSignal Sync status info */}

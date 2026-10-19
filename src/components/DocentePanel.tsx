@@ -137,19 +137,48 @@ export const DocentePanel: React.FC<Props> = ({ docente, onRefreshStats }) => {
       <div className="rounded-3xl bg-gradient-to-r from-indigo-700 via-indigo-600 to-blue-600 text-white p-6 sm:p-8 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="space-y-1.5">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-semibold backdrop-blur-xs">
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span>Panel del Profesor</span>
+          <div className="flex items-center gap-4">
+            {docente.fotoUrl ? (
+              <img
+                src={docente.fotoUrl}
+                alt={docente.nombre}
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover ring-4 ring-white/30 shadow-md shrink-0"
+              />
+            ) : (
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/20 backdrop-blur-xs flex items-center justify-center text-white font-extrabold text-xl shrink-0">
+                {docente.nombre.charAt(0)}
+              </div>
+            )}
+
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/15 text-white text-[11px] font-semibold backdrop-blur-xs">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                  <span>Panel del Profesor</span>
+                </span>
+                {docente.email && (
+                  <span className="hidden xs:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 text-[10px] font-bold">
+                    ✓ Google Verificado
+                  </span>
+                )}
+              </div>
+
+              <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">
+                {docente.nombre}
+              </h1>
+
+              <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-indigo-100">
+                <span className="font-semibold text-white">{docente.materia}</span>
+                <span>•</span>
+                <span>{cursosDisponibles.length} cursos asignados</span>
+                {docente.email && (
+                  <>
+                    <span>•</span>
+                    <span className="text-indigo-200 text-xs truncate max-w-[200px]">{docente.email}</span>
+                  </>
+                )}
+              </div>
             </div>
-            <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">
-              {docente.nombre}
-            </h1>
-            <p className="text-xs sm:text-sm text-indigo-100 flex items-center gap-2">
-              <span className="font-semibold text-white">{docente.materia}</span>
-              <span>•</span>
-              <span>{cursosDisponibles.length} cursos asignados</span>
-            </p>
           </div>
 
           <div className="flex items-center gap-2 bg-white/10 backdrop-blur-xs p-3 rounded-2xl border border-white/15 text-xs">

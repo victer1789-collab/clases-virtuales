@@ -124,16 +124,32 @@ export const Navbar: React.FC<Props> = ({
           {/* Active user status & logout */}
           {currentUser ? (
             <div className="flex items-center gap-2 pl-1 border-l border-slate-200 ml-1">
+              {currentUser.fotoUrl ? (
+                <img
+                  src={currentUser.fotoUrl}
+                  alt={currentUser.nombre}
+                  className="w-8 h-8 rounded-full object-cover ring-2 ring-blue-500/40 shrink-0 shadow-xs"
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs shrink-0">
+                  {currentUser.nombre.charAt(0)}
+                </div>
+              )}
+
               <div className="hidden lg:block text-right">
                 <p className="text-xs font-bold text-slate-800 leading-tight">
                   {currentUser.nombre}
                 </p>
                 <p className="text-[10px] text-blue-600 font-medium">
-                  {currentUser.rol === 'alumno'
-                    ? currentUser.curso
-                    : currentUser.rol === 'docente'
-                    ? currentUser.materia
-                    : 'Administrador'}
+                  {currentUser.email ? (
+                    <span className="truncate max-w-[120px] inline-block">{currentUser.email}</span>
+                  ) : currentUser.rol === 'alumno' ? (
+                    currentUser.curso
+                  ) : currentUser.rol === 'docente' ? (
+                    currentUser.materia
+                  ) : (
+                    'Administrador'
+                  )}
                 </p>
               </div>
 
